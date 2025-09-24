@@ -287,15 +287,18 @@ class NeneChristmasCharacter extends SparrowCharacter
       processedShader.saturation = Std.int(hsbcFormat(Std.string(currentShader.saturation.value)));
       processedShader.brightness = Std.int(hsbcFormat(Std.string(currentShader.brightness.value)));
       processedShader.contrast = Std.int(hsbcFormat(Std.string(currentShader.contrast.value)));
+    } else {
+      processedShader = currentShader;
+    }
 
+    if (Std.isOfType(processedShader, AdjustColorShader)) {
       visualizerShader = new AdjustColorShader();
       visualizerShader.hue = Std.int(hsbcFormat(Std.string(currentShader.hue.value)));
       visualizerShader.saturation = Std.int(hsbcFormat(Std.string(currentShader.saturation.value)));
       visualizerShader.brightness = Std.int(hsbcFormat(Std.string(currentShader.brightness.value))) / 2.5;
       visualizerShader.contrast = Std.int(hsbcFormat(Std.string(currentShader.contrast.value))) / 5;
     } else {
-      processedShader = currentShader;
-      visualizerShader = currentShader;
+      visualizerShader = processedShader;
     }
 
     abot.shader = processedShader;
