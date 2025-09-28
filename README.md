@@ -2,6 +2,8 @@
 
 just some dumbass scripts i made or edited (mostly)
 
+make sure to CLONE the repo to get the exact folder name! as an optional dependency, you'll need to have the correct folder name for it to reload the mod list!
+
 uhh [gamebanana page](https://gamebanana.com/mods/622155)
 
 ## changes
