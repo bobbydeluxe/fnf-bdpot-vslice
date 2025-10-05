@@ -1,17 +1,18 @@
 import funkin.modding.module.Module;
 
 /**
- * this module provides a simple toggle for enabling or disabling BDPot features.
- * other mods can check if BDPot is enabled by calling `isBDPotEnabled()`.
+ * this module provides a simple toggle for lock-on shit
  * to add lock-on features or other BDPot-dependent functionality, mods should
  * import modulehandler, call this module, and use its toggle state to conditionally enable their features.
+ * 
+ * none of the tweaks in this mod will be affected, this is just for lock-on shit
  *
  * Example usage in another mod:
  * 
  * import funkin.modding.module.ModuleHandler;
  * 
  * var bdpotToggle = ModuleHandler.getModule('bdpot-toggle');
- * if (bdpotToggle.scriptCall('isBDPotEnabled') && bdpotToggle != null) {
+ * if (bdpotToggle.scriptCall('enableCheck') && bdpotToggle != null) {
  *     // do some shit like results screen colorchanges for characters or some menu tweaks idk
  * }
  */
@@ -21,16 +22,7 @@ class BDPotToggleModule extends Module {
         super('bdpot-toggle');
     }
 
-    public function isBDPotEnabled() {
+    public function enableCheck() {
         return true;
-        /*
-         * list of shit that this WON'T change (tweaks i find essential):
-         * - a-bot's shaders being adjustcolor if nene has dropshadow so a-bot won't bug out
-         * - schoolErect and schoolPico having alternation logic for character masks [check the files to know what i mean]
-         * - strumline background being below hp bar and ratings (once again its not MY script)
-         * 
-         * that's it for now lol
-         *                                                                          - bobbyDX
-         */
     }
 }

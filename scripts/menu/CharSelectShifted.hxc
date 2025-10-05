@@ -20,21 +20,17 @@ class CharSelectRefresh extends Module
 
     override function onSubStateOpenEnd(event:SubStateScriptEvent):Void {
         super.onSubStateOpenEnd(event);
+        
+        var colorShader = new AdjustColorShader();
+        colorShader.hue = -17;
+        colorShader.saturation = 2;
+        colorShader.contrast = 5;
+        colorFilter = new ShaderFilter(colorShader);
 
-        var bdpotToggle:Module = ModuleHandler.getModule('bdpot-toggle');
+        var camera:FlxCamera = FlxG.camera;
 
-        if (bdpotToggle.scriptCall('isBDPotEnabled') && bdpotToggle != null) {
-            var colorShader = new AdjustColorShader();
-            colorShader.hue = -17;
-            colorShader.saturation = 5;
-            colorShader.contrast = 5;
-            colorFilter = new ShaderFilter(colorShader);
-
-            var camera:FlxCamera = FlxG.camera;
-
-            var currentFilters:Array<ShaderFilter> = camera.filters != null ? camera.filters : [];
-            currentFilters.push(colorFilter);
-            camera.filters = currentFilters;
-        }
+        var currentFilters:Array<ShaderFilter> = camera.filters != null ? camera.filters : [];
+        currentFilters.push(colorFilter);
+        camera.filters = currentFilters;
     }
 }

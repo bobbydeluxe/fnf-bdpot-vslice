@@ -24,16 +24,12 @@ class PicoResultsColoring extends Module
     override function onUpdate(event:UpdateScriptEvent) {
         super.onUpdate(event);
 
-        var bdpotToggle:Module = ModuleHandler.getModule('bdpot-toggle');
-
-        if (bdpotToggle.scriptCall('isBDPotEnabled') && bdpotToggle != null) {
-            if (FlxG.state.subState.playerCharacterId == character) {
-                for (i in 2...14) { // had to do some trial and error to get these numbers
-                    var member = FlxG.state.subState.members[i];
-                    var spriteDrop = Std.downcast(member, FlxBackdrop);
-                    if (spriteDrop != null) {
-                        spriteDrop.colorTransform.color = 0xFF85A3FF;
-                    }
+        if (FlxG.state.subState.playerCharacterId == character) {
+            for (i in 2...14) { // had to do some trial and error to get these numbers
+                var member = FlxG.state.subState.members[i];
+                var spriteDrop = Std.downcast(member, FlxBackdrop);
+                if (spriteDrop != null) {
+                    spriteDrop.colorTransform.color = 0xFF85A3FF;
                 }
             }
         }
@@ -43,19 +39,15 @@ class PicoResultsColoring extends Module
     {
         super.onSubStateOpenEnd(event);
 
-        var bdpotToggle:Module = ModuleHandler.getModule('bdpot-toggle');
-
-        if (bdpotToggle.scriptCall('isBDPotEnabled') && bdpotToggle != null) {
-            if (FlxG.state.subState.playerCharacterId == character) {
-                for (i in 0...2) { // had to do some trial and error to get these numbers
-                    var member = FlxG.state.subState.members[i];
-                    var sprite = Std.downcast(member, FlxSprite);
-                    if (sprite != null) {
-                        if (i == 0)
-                            sprite.pixels = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height, [0xff7488fd, 0xff5c74fe], 90).pixels;
-                        else if (i == 1)
-                            sprite.pixels = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height, [0xffa6b4ff, 0xffbeccff], 90).pixels;
-                    }
+        if (FlxG.state.subState.playerCharacterId == character) {
+            for (i in 0...2) { // had to do some trial and error to get these numbers
+                var member = FlxG.state.subState.members[i];
+                var sprite = Std.downcast(member, FlxSprite);
+                if (sprite != null) {
+                    if (i == 0)
+                        sprite.pixels = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height, [0xff7488fd, 0xff5c74fe], 90).pixels;
+                    else if (i == 1)
+                        sprite.pixels = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height, [0xffa6b4ff, 0xffbeccff], 90).pixels;
                 }
             }
         }
